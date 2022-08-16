@@ -1,2 +1,2 @@
 # 2022_Project_Management
-This years project management will be a snake game where the snake collects food.
+Kia Ora! Hope you are ready for some fun! Have a go at playing the snake game where you can collect food to score points and try not to hit the wall. Each time you collect a piece of food, a new piece will appear somewhere else on the grid. You will use your arrow keys on your keyboard to direct your snake towards the food to eat it. Every time a piece of food is consumed, your snake will grow in size and speed. So, beware this game isn’t as easy as it seems. Remember, if you hit the wall, it is GAME OVER. Try play at the same time as friends to see who can get the highest score and have the biggest snake! What are you waiting for? Get playing!
