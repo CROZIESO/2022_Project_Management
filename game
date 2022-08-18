@@ -1,0 +1,34 @@
+import pygame, sys
+
+pygame.init()
+# sets window size
+window = pygame.display.set_mode((400,500))
+# clock object so that frame rate is consistent
+clock = pygame.time.Clock()
+# surface to later show on display surface and it's size
+surface = pygame.Surface((100,200))
+# colours the surface
+surface.fill(pygame.Color('blue'))
+# create rectangle - x,y,w,h - passes in placement here - not new surface, different kind of object
+rect = pygame.Rect(100,200,100,100)
+
+while True:
+    # start of loop for every game check for every possible event
+    for event in pygame.event.get():
+        # checks event to quit game
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+    # colours the window/background
+    window.fill(pygame.Color('green'))
+    # shows rect - pass in surface, colour, rectangle
+    pygame.draw.rect(window,pygame.Color('yellow'), rect)
+    # displays surface on the window - left corner starting at points below
+    window.blit(surface, (200,250))
+    pygame.display.update()
+    clock.tick(60)
+
+
+
+# notes - screen, display screen, rect - movement in all places - create rect itself, or take surface and create rect around it
+# diff between rectangle and surface - rectangle easier to code, rectangle usually part of surface
