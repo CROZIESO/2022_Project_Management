@@ -9,8 +9,8 @@ clock = pygame.time.Clock()
 surface = pygame.Surface((100,200))
 # colours the surface
 surface.fill(pygame.Color('blue'))
-# create rectangle - x,y,w,h - passes in placement here - not new surface, different kind of object
-rect = pygame.Rect(100,200,100,100)
+# create rectangle around surface, centers surface
+rect = surface.get_rect(center = (200,250))
 
 while True:
     # start of loop for every game check for every possible event
@@ -23,8 +23,8 @@ while True:
     window.fill(pygame.Color('green'))
     # shows rect - pass in surface, colour, rectangle
     pygame.draw.rect(window,pygame.Color('yellow'), rect)
-    # displays surface on the window - left corner starting at points below
-    window.blit(surface, (200,250))
+    # displays surface on the window - using info from rect
+    window.blit(surface, rect)
     pygame.display.update()
     clock.tick(60)
 
@@ -32,3 +32,4 @@ while True:
 
 # notes - screen, display screen, rect - movement in all places - create rect itself, or take surface and create rect around it
 # diff between rectangle and surface - rectangle easier to code, rectangle usually part of surface
+# replace rect with any other shape if want
