@@ -15,11 +15,11 @@ class GAME:
         self.grid()
 
     def grid(self):
-        "sets up grid with grass"
-        grass_colour = (167,209,61)
+        "sets up grid with funky purple background"
+        grass_colour = (204,169,221)
 
         for row in range(block_number):
-            # alternates the shade of green within the column for each uneven row
+            # alternates the shade of purple within the column for each uneven row
             if row % 2 != 0:
                 for col in range(block_number):
                     if col % 2 != 0:
@@ -28,7 +28,7 @@ class GAME:
                         # displays rect
                         pygame.draw.rect(window,grass_colour,grass_rect)
             else:
-                # alternates the shade of green within the column for each even row
+                # alternates the shade of purple within the column for each even row
                 for col in range(block_number):
                     if col % 2 == 0:
                             # rect - x,y,w,h - selects blocks to shade diff colour
@@ -55,7 +55,7 @@ while True:
             pygame.quit()
             sys.exit()
     # colours the window/background
-    window.fill((175,215,70))
+    window.fill((177,156,217))
     main.draw_elements()
     pygame.display.update()
     clock.tick(60)
