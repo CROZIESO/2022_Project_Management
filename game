@@ -15,8 +15,15 @@ class GAME:
         self.grid()
 
     def grid(self):
-        "sets up grid with funky purple background"
+        "sets up grid with purple grass"
         grass_colour = (204,169,221)
+        grid_line_colour = (200, 200, 200)
+
+        for x in range(0, block_size * block_number, block_size):
+            for y in range(0, block_size * block_number, block_size):
+                # draws outline around the blocks in white
+                grid_rect = pygame.Rect(x, y, block_size, block_size)
+                pygame.draw.rect(window, grid_line_colour, grid_rect, 1)
 
         for row in range(block_number):
             # alternates the shade of purple within the column for each uneven row
