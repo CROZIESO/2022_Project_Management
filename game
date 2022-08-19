@@ -15,19 +15,29 @@ class GAME:
         self.grid()
 
     def grid(self):
-        #sets up grid with grass
+        "sets up grid with grass"
         grass_colour = (167,209,61)
 
-        for col in range(block_number):
-            # checks that uneven - so every uneven block darker shade
-            if col % 2 != 0:
-                # rect - x,y,w,h
-                grass_rect = pygame.Rect(col * block_size,0,block_size,block_size)
-                # displays rect
-                pygame.draw.rect(window,grass_colour,grass_rect)
+        for row in range(block_number):
+            # alternates the shade of green within the column for each uneven row
+            if row % 2 != 0:
+                for col in range(block_number):
+                    if col % 2 != 0:
+                        # rect - x,y,w,h - selects blocks to shade diff colour
+                        grass_rect = pygame.Rect(col * block_size,row * block_size,block_size,block_size)
+                        # displays rect
+                        pygame.draw.rect(window,grass_colour,grass_rect)
+            else:
+                # alternates the shade of green within the column for each even row
+                for col in range(block_number):
+                    if col % 2 == 0:
+                            # rect - x,y,w,h - selects blocks to shade diff colour
+                            grass_rect = pygame.Rect(col * block_size,row * block_size,block_size,block_size)
+                            # displays rect
+                            pygame.draw.rect(window,grass_colour,grass_rect)
 
 pygame.init()
-# sets up blocks in grid
+# sets up blocks on window
 block_size = 40
 block_number = 20
 # sets up window to be 800px by 800px
