@@ -1,16 +1,41 @@
 import pygame, sys
 
+class SNAKE():
+    pass
+
+class FOOD():
+    pass 
+
+class GAME:
+    def __init__(self):
+        self.snake = SNAKE()
+        self.fruit= FOOD()
+
+    def draw_elements(self):
+        self.grid()
+
+    def grid(self):
+        #sets up grid with grass
+        grass_colour = (167,209,61)
+
+        for col in range(block_number):
+            # checks that uneven - so every uneven block darker shade
+            if col % 2 != 0:
+                # rect - x,y,w,h
+                grass_rect = pygame.Rect(col * block_size,0,block_size,block_size)
+                # displays rect
+                pygame.draw.rect(window,grass_colour,grass_rect)
+
 pygame.init()
-# sets window size
-window = pygame.display.set_mode((400,500))
+# sets up blocks in grid
+block_size = 40
+block_number = 20
+# sets up window to be 800px by 800px
+window = pygame.display.set_mode((block_size * block_number,block_size * block_number))
 # clock object so that frame rate is consistent
 clock = pygame.time.Clock()
-# surface to later show on display surface and it's size
-surface = pygame.Surface((100,200))
-# colours the surface
-surface.fill(pygame.Color('blue'))
-# create rectangle around surface, centers surface
-rect = surface.get_rect(center = (200,250))
+
+main = GAME()
 
 while True:
     # start of loop for every game check for every possible event
@@ -20,11 +45,8 @@ while True:
             pygame.quit()
             sys.exit()
     # colours the window/background
-    window.fill(pygame.Color('green'))
-    # shows rect - pass in surface, colour, rectangle
-    pygame.draw.rect(window,pygame.Color('yellow'), rect)
-    # displays surface on the window - using info from rect
-    window.blit(surface, rect)
+    window.fill((175,215,70))
+    main.draw_elements()
     pygame.display.update()
     clock.tick(60)
 
