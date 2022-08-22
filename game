@@ -1,28 +1,42 @@
-import pygame, sys
+import pygame, sys, random
+# imports vector so I can use it instead of a list
+from pygame.math import Vector2
 
-class SNAKE():
+class Food():
+    def __init__(self):
+        # create a point/place (x,y) using vector (similar to list but simpler to read)
+        self.x = random.randint(0,block_number - 1)
+        self.y = random.randint(0,block_number - 1)
+        self.place = Vector2(self.x,self.y)
+
+    def draw_food(self):
+        # create a rect in correct place - using vector above and x,y,w,h - not moving by pixels but by block_size
+        food_rect = pygame.Rect(int(self.place.x * block_size),int(self.place.y * block_size),block_size,block_size)
+        # draw rect/food - surface, colour,rect
+        #pygame.draw.rect(window,(126,166,114) ,food_rect)
+        window.blit(food_image,food_rect)
+
+class Snake():
     pass
-
-class FOOD():
-    pass 
 
 class GAME:
     def __init__(self):
-        self.snake = SNAKE()
-        self.fruit= FOOD()
+        self.fruit= Food()
+        self.snake = Snake()
 
     def draw_elements(self):
         self.grid()
 
     def grid(self):
-        "sets up grid with purple grass"
+        #sets up grid with purple grass
         grass_colour = (204,169,221)
         grid_line_colour = (200, 200, 200)
 
-        for x in range(0, block_size * block_number, block_size):
-            for y in range(0, block_size * block_number, block_size):
+        # h,z as x,y positions
+        for h in range(0, block_size * block_number, block_size):
+            for z in range(0, block_size * block_number, block_size):
                 # draws outline around the blocks in white
-                grid_rect = pygame.Rect(x, y, block_size, block_size)
+                grid_rect = pygame.Rect(h, z, block_size, block_size)
                 pygame.draw.rect(window, grid_line_colour, grid_rect, 1)
 
         for row in range(block_number):
@@ -48,10 +62,16 @@ pygame.init()
 block_size = 40
 block_number = 20
 # sets up window to be 800px by 800px
-window = pygame.display.set_mode((block_size * block_number,block_size * block_number))
+window = pygame.display.set_mode((block_size * block_number - 1,block_size * block_number -1))
 # clock object so that frame rate is consistent
 clock = pygame.time.Clock()
-
+# create food object
+food = Food()
+# import food image
+image = pygame.image.load('images/food_green_apple.png').convert_alpha()
+# scales image to correct size
+food_image = pygame.transform.scale(image, (block_size, block_size))
+# play game
 main = GAME()
 
 while True:
@@ -64,11 +84,15 @@ while True:
     # colours the window/background
     window.fill((177,156,217))
     main.draw_elements()
+    # draw food
+    food.draw_food()
     pygame.display.update()
     clock.tick(60)
+    
 
 
 
 # notes - screen, display screen, rect - movement in all places - create rect itself, or take surface and create rect around it
 # diff between rectangle and surface - rectangle easier to code, rectangle usually part of surface
 # replace rect with any other shape if want
+# blit - move one surface to another surface
