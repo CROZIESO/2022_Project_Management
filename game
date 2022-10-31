@@ -31,7 +31,7 @@ class Snake():
             # create a rect
             square_rect = pygame.Rect(int(square.x * block_size),int(square.y * block_size),block_size,block_size)
             # draw the rect
-            pygame.draw.rect(window,(220,20,60), square_rect)
+            pygame.draw.rect(window,(16,78,139), square_rect)
     
     def move_snake(self):
         if self.new_block == True:
