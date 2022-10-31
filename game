@@ -24,6 +24,7 @@ class Snake():
         self.body = [Vector2(5,10), Vector2(6,10), Vector2(7,10)]
         # create snake direction
         self.direction = Vector2(1,0)
+        self.new_block = False
 
     def draw_snake(self):
         for square in self.body:
@@ -33,10 +34,19 @@ class Snake():
             pygame.draw.rect(window,(183,111,122), square_rect)
     
     def move_snake(self):
-        # move forward
-        body_repeated = self.body[:-1]
-        body_repeated.insert(0,body_repeated[0] + self.direction)
-        self.body = body_repeated[:]
+        if self.new_block == True:
+            body_repeated = self.body[:]
+            body_repeated.insert(0,body_repeated[0] + self.direction)
+            self.body = body_repeated[:]
+            self.new_block = False
+        else:
+            # move forward
+            body_repeated = self.body[:-1]
+            body_repeated.insert(0,body_repeated[0] + self.direction)
+            self.body = body_repeated[:]
+
+    def add_block(self):
+        self.new_block = True
 
 
 class GAME:
@@ -58,6 +68,7 @@ class GAME:
             # food appears elsewhere
             self.food.randomize()
             # add another block to the snake
+            self.snake.add_block()
 
 
     def grid(self):
