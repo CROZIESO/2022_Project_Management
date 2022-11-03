@@ -31,7 +31,7 @@ class Snake():
             # create a rect
             square_rect = pygame.Rect(int(square.x * block_size),int(square.y * block_size),block_size,block_size)
             # draw the rect
-            pygame.draw.rect(window,(16,78,139), square_rect)
+            pygame.draw.rect(window,(238,44,44), square_rect)
     
     def move_snake(self):
         if self.new_block == True:
@@ -145,7 +145,8 @@ while True:
     clock.tick(60)
     
 
-
+# add comment
+# doc strings to classes and methods
 
 # notes - screen, display screen, rect - movement in all places - create rect itself, or take surface and create rect around it
 # diff between rectangle and surface - rectangle easier to code, rectangle usually part of surface
