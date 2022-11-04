@@ -48,6 +48,8 @@ class Snake():
     def add_block(self):
         self.new_block = True
 
+    def reset(self):
+        self.body = [Vector2(5,10), Vector2(4,10), Vector2(3,10)]
 
 class GAME:
     def __init__(self):
@@ -83,8 +85,7 @@ class GAME:
                 self.game_ends()
 
     def game_ends(self):
-        pygame.quit()
-        sys.exit()
+        self.snake.reset()
 
     def draw_score(self):
         # start with three blocks so take that off the starting score
