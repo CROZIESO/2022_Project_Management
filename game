@@ -144,13 +144,17 @@ while True:
         # sorting the movement related to each key
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                main.snake.direction = Vector2(0,-1)
+                if main.snake.direction.y != 1:
+                    main.snake.direction = Vector2(0,-1)
             if event.key == pygame.K_DOWN:
-                main.snake.direction = Vector2(0,1)
+                if main.snake.direction.x != -1:
+                    main.snake.direction = Vector2(0,1)
             if event.key == pygame.K_RIGHT:
-                main.snake.direction = Vector2(1,0)
+                if main.snake.direction.y != -1:
+                    main.snake.direction = Vector2(1,0)
             if event.key == pygame.K_LEFT:
-                main.snake.direction = Vector2(-1,0)
+                if main.snake.direction.x != 1:
+                    main.snake.direction = Vector2(-1,0)
 
     # colours the window/background
     window.fill((177,156,217))
@@ -159,7 +163,7 @@ while True:
     clock.tick(60)
     
 
-# # add comment
+# add comment
 # doc strings to classes and methods
 
 # notes - screen, display screen, rect - movement in all places - create rect itself, or take surface and create rect around it
