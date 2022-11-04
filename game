@@ -92,12 +92,12 @@ class GAME:
         # displays the text and colours it
         score_display = font.render(score,True,(56,74,12))
         # sorts position of score
-        score_placement_x = int(block_number * block_size - 60)
+        score_placement_x = int(block_number * block_size - 20)
         score_placement_y = int(block_number * block_size - 20)
         score_rect = score_display.get_rect(center = (score_placement_x,score_placement_y))
         # display the rectangle in the back
         back_rect = pygame.Rect(score_placement_x - 20,score_placement_y - 20, block_size,block_size)
-        pygame.draw.rect(window,(167,209,61),back_rect)
+        pygame.draw.rect(window,(204,169,221),back_rect)
         pygame.draw.rect(window,(56,74,12),back_rect,2)
         # displays text with position
         window.blit(score_display, score_rect)
