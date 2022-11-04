@@ -21,7 +21,7 @@ class Food():
 class Snake():
     def __init__(self):
         # starting position of snake
-        self.body = [Vector2(5,10), Vector2(6,10), Vector2(7,10)]
+        self.body = [Vector2(5,10), Vector2(4,10), Vector2(3,10)]
         # create snake direction
         self.direction = Vector2(1,0)
         self.new_block = False
@@ -57,6 +57,7 @@ class GAME:
     def update(self):
         self.snake.move_snake()
         self.check_overlap()
+        self.check_player_error()
 
     def draw_elements(self):
         self.grid()
@@ -70,6 +71,19 @@ class GAME:
             # add another block to the snake
             self.snake.add_block()
 
+    def check_player_error(self):
+        # check if snake hits the wall
+        # checks that the head doesn't go outside the wall
+        if not 0 <= self.snake.body[0].x < block_number or not 0 <= self.snake.body[0].y < block_number:
+            self.game_ends()
+        # check if snake hits itself
+        for square in self.snake.body[1:]:
+            if square == self.snake.body[0]:
+                self.game_ends()
+
+    def game_ends(self):
+        pygame.quit()
+        sys.exit()
 
     def grid(self):
         #sets up grid with purple grass
